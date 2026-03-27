@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Navigation.css";
 
 const NAV_LINKS = [
   { to: "/", label: "Inicio", end: true },
