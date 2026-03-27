@@ -12,6 +12,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 
 import "./App.css";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +29,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/games/:id" element={<ItemDetail type="game" />} />
         <Route path="/movies/:id" element={<ItemDetail type="movie" />} />
