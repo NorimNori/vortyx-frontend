@@ -1,3 +1,5 @@
+import "./Main.css";
+
 function Main() {
   return (
     <section className="main">
@@ -7,8 +9,8 @@ function Main() {
       <div className="main__container">
         <p className="main__eyebrow">Tu universo de entretenimiento</p>
         <h1 className="main__title">
-          TODO LO QUE TE <br />
-          <span className="main__title-brand">MUEVE</span> <br />
+          TODO LO QUE TE
+          <span className="main__title-brand">MUEVE</span>
           EN UN SOLO LUGAR.
         </h1>
         <p className="main__subtitle">
