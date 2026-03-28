@@ -1,7 +1,7 @@
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
-function Header({ isLoggedIn }) {
+function Header({ isLoggedIn, onLoginClick, onRegisterClick }) {
   return (
     <header className="header">
       <div className="header__container">
@@ -26,14 +26,14 @@ function Header({ isLoggedIn }) {
             <>
               <button
                 className="header__btn header__btn--ghost"
-                onClick={() => {}}
+                onClick={onLoginClick}
                 type="button"
               >
                 Iniciar sesión
               </button>
               <button
                 className="header__btn header__btn--primary"
-                onClick={() => {}}
+                onClick={onRegisterClick}
                 type="button"
               >
                 Registrarse
