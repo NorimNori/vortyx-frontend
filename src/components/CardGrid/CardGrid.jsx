@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "../Card/Card";
 import Preloader from "../Preloader/Preloader";
+import "./GridCard.css";
 
 const CARDS_PER_PAGE = 3;
 
