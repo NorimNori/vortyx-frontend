@@ -1,5 +1,5 @@
 const BASE_URL = "https://api.rawg.io/api";
-const API_KEY_RAWG = import.meta.env.VITE_RAWG_API_KEY_RAWG;
+const API_KEY_RAWG = import.meta.env.VITE_API_KEY_RAWG;
 
 function handleResponse(res) {
   if (res.ok) {
