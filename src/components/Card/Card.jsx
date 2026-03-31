@@ -1,5 +1,5 @@
 import { normalizeItem, TYPE_LABELS } from "../../utils/cardUtils";
-import "./Card.css";
+//import "./Card.css";
 
 function Card({ item, type, onSave, isSaved }) {
   const data = normalizeItem(item, type);
