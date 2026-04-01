@@ -1,26 +1,33 @@
-import { useState } from "react";
+import { useRef } from "react";
 import Card from "../Card/Card";
 import Preloader from "../Preloader/Preloader";
 import "./GridCard.css";
 
-const CARDS_PER_PAGE = 3;
+const SECTION_LABELS = {
+  game: { prefix: "TRENDING", accent: "GAMES" },
+  movie: { prefix: "TRENDING", accent: "FILMS" },
+  series: { prefix: "TRENDING", accent: "SERIES" },
+};
 
 export const API_ERROR_MESSAGE =
   "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde.";
 
 function CardGrid({ items, type, isLoading, error, onSave, savedItems = [] }) {
-  const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
+  const trackRef = useRef(null);
 
-  const visibleItems = items.slice(0, visibleCount);
-  const hasMore = visibleCount < items.length;
-
-  function handleShowMore() {
-    setVisibleCount((prev) => prev + CARDS_PER_PAGE);
+  function scroll(direction) {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardWidth =
+      track.querySelector(".card-grid__item")?.offsetWidth || 200;
+    const scrollAmount = (cardWidth + 8) * 2;
+    track.scrollBy({
+      left: direction === "next" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
   }
 
-  if (isLoading) {
-    return <Preloader />;
-  }
+  if (isLoading) return <Preloader />;
 
   if (error) {
     return (
@@ -43,32 +50,50 @@ function CardGrid({ items, type, isLoading, error, onSave, savedItems = [] }) {
 
   return (
     <div className="card-grid">
-      <ul className="card-grid__list">
-        {visibleItems.map((item) => (
-          <li className="card-grid__item" key={`${type}-${item.id}`}>
-            <Card
-              item={item}
-              type={type}
-              onSave={onSave}
-              isSaved={savedItems.some(
-                (s) => s.id === item.id && s.type === type,
-              )}
-            />
-          </li>
-        ))}
-      </ul>
+      <div className="card-grid__header">
+        <h2 className="card-grid__title">
+          {SECTION_LABELS[type]?.prefix}{" "}
+          <span className={`card-grid__title-accent--${type}`}>
+            {SECTION_LABELS[type]?.accent}
+          </span>
+        </h2>
 
-      {hasMore && (
-        <div className="card-grid__more">
+        <div className="card-grid__controls">
           <button
-            className="card-grid__more-btn"
-            onClick={handleShowMore}
+            className="card-grid__arrow"
+            onClick={() => scroll("prev")}
             type="button"
+            aria-label="Anterior"
           >
-            Mostrar más
+            ‹
+          </button>
+          <button
+            className="card-grid__arrow"
+            onClick={() => scroll("next")}
+            type="button"
+            aria-label="Siguiente"
+          >
+            ›
           </button>
         </div>
-      )}
+      </div>
+
+      <div className="card-grid__carousel">
+        <ul className="card-grid__track" ref={trackRef}>
+          {items.map((item) => (
+            <li className="card-grid__item" key={`${type}-${item.id}`}>
+              <Card
+                item={item}
+                type={type}
+                onSave={onSave}
+                isSaved={savedItems.some(
+                  (s) => s.id === item.id && s.type === type,
+                )}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
