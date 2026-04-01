@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchForm.css";
 
 const FILTERS = [
   { value: "all", label: "Todo" },
