@@ -3,6 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import CardGrid from "../CardGrid/CardGrid";
 import { searchGames } from "../../utils/rawgApi";
 import { searchMoviesAndSeries } from "../../utils/tmdbApi";
+import "./SearchPage.css";
 
 function SearchPage() {
   const [state, setState] = useState({
