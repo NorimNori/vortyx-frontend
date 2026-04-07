@@ -7,6 +7,8 @@ import {
   MOCK_ACTIVITY,
 } from "../../utils/mockData";
 import StatsTab from "./StatsTab";
+import { useState } from "react";
+import CollectionTab from "./CollectionTab";
 
 const user = MOCK_USER;
 const games = MOCK_GAMES;
@@ -15,6 +17,7 @@ const series = MOCK_SERIES;
 const activity = MOCK_ACTIVITY;
 
 function Profile() {
+  const [activeTab, setActiveTab] = useState("games");
   return (
     <div>
       <ProfileHeader
@@ -30,6 +33,24 @@ function Profile() {
         series={series}
         activity={activity}
       />
+
+      <div className="profile__tab-content" role="tabpanel">
+        {activeTab === "games" && <CollectionTab items={games} type="game" />}
+        {activeTab === "movies" && (
+          <CollectionTab items={movies} type="movie" />
+        )}
+        {activeTab === "series" && (
+          <CollectionTab items={series} type="series" />
+        )}
+        {activeTab === "stats" && (
+          <StatsTab
+            games={games}
+            movies={movies}
+            series={series}
+            activity={activity}
+          />
+        )}
+      </div>
     </div>
   );
 }

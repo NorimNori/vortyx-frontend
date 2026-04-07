@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ITEM_STATUS, STATUS_LABELS } from "../../utils/profile/constants";
-import { countByStatus } from "../../utils/profile/helpers";
+import { ITEM_STATUS, STATUS_LABELS } from "../../utils/profileConstants";
+import { countByStatus } from "../../utils/profileHelpers";
 import CollectionCard from "./CollectionCard";
+import "./CollectionTab.css";
 
 function CollectionTab({ items, type }) {
   const [activeStatus, setActiveStatus] = useState("all");
