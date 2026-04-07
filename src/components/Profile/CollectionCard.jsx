@@ -1,4 +1,5 @@
 import { STATUS_COLORS, STATUS_LABELS } from "../../utils/profileConstants";
+import "./CollectionCard.css";
 
 function CollectionCard({ item, type }) {
   const statusColor = STATUS_COLORS[item.status] || "var(--color-text-subtle)";
