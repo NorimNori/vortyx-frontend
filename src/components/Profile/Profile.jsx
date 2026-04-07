@@ -4,12 +4,15 @@ import {
   MOCK_GAMES,
   MOCK_MOVIES,
   MOCK_SERIES,
+  MOCK_ACTIVITY,
 } from "../../utils/mockData";
+import StatsTab from "./StatsTab";
 
 const user = MOCK_USER;
 const games = MOCK_GAMES;
 const movies = MOCK_MOVIES;
 const series = MOCK_SERIES;
+const activity = MOCK_ACTIVITY;
 
 function Profile() {
   return (
@@ -19,6 +22,13 @@ function Profile() {
         games={games}
         movies={movies}
         series={series}
+      />
+
+      <StatsTab
+        games={games}
+        movies={movies}
+        series={series}
+        activity={activity}
       />
     </div>
   );
