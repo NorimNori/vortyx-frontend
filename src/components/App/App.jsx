@@ -9,7 +9,7 @@ import Main from "../Main/Main";
 import SearchPage from "../SearchPage/SearchPage";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import Profile from "../Profile/Profile";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+//import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import NotFound from "../NotFound/NotFound";
@@ -75,14 +75,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/games/:id" element={<ItemDetail type="game" />} />
         <Route path="/movies/:id" element={<ItemDetail type="movie" />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
