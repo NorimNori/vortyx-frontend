@@ -9,6 +9,7 @@ import {
   countByStatus,
   getTopGenres,
 } from "../../utils/profileHelpers";
+import "./StatsTab.css";
 
 function StatsTab({ games, movies, series, activity }) {
   const allItems = [...games, ...movies, ...series];
