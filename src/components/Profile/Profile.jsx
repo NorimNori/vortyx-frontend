@@ -10,6 +10,7 @@ import StatsTab from "./StatsTab";
 import { useState } from "react";
 import CollectionTab from "./CollectionTab";
 import ProfileTabs from "./ProfileTabs";
+import "./Profile.css";
 
 const user = MOCK_USER;
 const games = MOCK_GAMES;

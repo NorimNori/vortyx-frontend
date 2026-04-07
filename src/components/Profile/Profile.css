@@ -1,0 +1,39 @@
+.profile {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
+  overflow: hidden;
+}
+
+.profile__orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%);
+  top: -100px;
+  right: -100px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.profile__container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profile__tab-content {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .profile__container {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+}
