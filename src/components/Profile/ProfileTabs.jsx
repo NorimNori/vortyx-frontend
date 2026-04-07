@@ -1,4 +1,5 @@
 import { TABS } from "../../utils/profileConstants";
+import "./ProfileTabs.css";
 
 function ProfileTabs({ activeTab, onTabChange }) {
   return (
