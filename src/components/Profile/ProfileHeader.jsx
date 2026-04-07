@@ -1,5 +1,6 @@
 import { ITEM_STATUS } from "../../utils/profileConstants";
 import { formatDate } from "../../utils/profileHelpers";
+import "./ProfileHeader.css";
 
 function ProfileHeader({ user, games, movies, series }) {
   const totalCompleted = [...games, ...movies, ...series].filter(
