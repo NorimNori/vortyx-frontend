@@ -9,6 +9,7 @@ import {
 import StatsTab from "./StatsTab";
 import { useState } from "react";
 import CollectionTab from "./CollectionTab";
+import ProfileTabs from "./ProfileTabs";
 
 const user = MOCK_USER;
 const games = MOCK_GAMES;
@@ -33,6 +34,8 @@ function Profile() {
         series={series}
         activity={activity}
       />
+
+      <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
       <div className="profile__tab-content" role="tabpanel">
         {activeTab === "games" && <CollectionTab items={games} type="game" />}
