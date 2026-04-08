@@ -21,19 +21,12 @@ const activity = MOCK_ACTIVITY;
 function Profile() {
   const [activeTab, setActiveTab] = useState("games");
   return (
-    <div>
+    <div className="profile">
       <ProfileHeader
         user={user}
         games={games}
         movies={movies}
         series={series}
-      />
-
-      <StatsTab
-        games={games}
-        movies={movies}
-        series={series}
-        activity={activity}
       />
 
       <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
