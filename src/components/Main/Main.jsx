@@ -17,10 +17,6 @@ function Main() {
   const [moviesError, setMoviesError] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
     getTrendingGames()
       .then((data) => {
         setGames(data.results || []);
