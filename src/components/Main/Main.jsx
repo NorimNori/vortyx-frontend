@@ -7,7 +7,7 @@ import { getTrendingGames } from "../../utils/rawgApi";
 import { getTrendingMovies } from "../../utils/tmdbApi";
 
 function Main() {
-  const [loading, setIsLoading] = useState(true);
+  const [loading, setIsLoading] = useState(false);
   const [games, setGames] = useState([]);
   const [gamesLoading, setGamesLoading] = useState(true);
   const [gamesError, setGamesError] = useState(false);
