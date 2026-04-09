@@ -1,0 +1,52 @@
+.about__feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  list-style: none;
+}
+
+.about__feat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: border-color var(--transition-base);
+}
+
+.about__feat-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.about__feat-accent {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.about__feat-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.about__feat-desc {
+  font-size: 12px;
+  color: var(--color-text-subtle);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .about__feat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__feat-grid {
+    grid-template-columns: 1fr;
+  }
+}

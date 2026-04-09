@@ -1,5 +1,6 @@
 import { FEATURES } from "../../utils/aboutData";
 import SectionTitle from "../About/SectionTitle";
+import "./FeaturesSection.css";
 
 function FeaturesSection() {
   return (
