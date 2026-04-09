@@ -15,6 +15,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import NotFound from "../NotFound/NotFound";
 
 import "./App.css";
+import About from "../About/About";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -75,6 +76,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/games/:id" element={<ItemDetail type="game" />} />
         <Route path="/movies/:id" element={<ItemDetail type="movie" />} />
+        <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
 
         <Route path="*" element={<NotFound />} />

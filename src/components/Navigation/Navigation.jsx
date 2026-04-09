@@ -5,6 +5,7 @@ const NAV_LINKS = [
   { to: "/", label: "Inicio", end: true },
   { to: "/search", label: "Explorar" },
   { to: "/profile", label: "Perfil" },
+  { to: "/about", label: "Acerca de" },
 ];
 
 function Navigation() {
