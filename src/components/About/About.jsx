@@ -1,9 +1,9 @@
-import SectionTitle from "./SectionTitle";
+import FeaturesSection from "./FeaturesSection";
 
 function About() {
   return (
     <div>
-      <SectionTitle main="Hola" accent="mundo" />
+      <FeaturesSection />
     </div>
   );
 }
