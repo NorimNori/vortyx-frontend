@@ -1,3 +1,5 @@
+import "./SectionTitle.css";
+
 function SectionTitle({ main, accent, accentMuted = false }) {
   return (
     <h2 className="section-title">
