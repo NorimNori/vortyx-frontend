@@ -1,5 +1,6 @@
 import { TECH_STACK } from "../../utils/aboutData";
 import TechCard from "./TechCard";
+import "./HeroSection.css";
 
 function HeroSection() {
   return (
