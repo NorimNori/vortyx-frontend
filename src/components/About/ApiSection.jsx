@@ -1,5 +1,6 @@
 import { APIS } from "../../utils/aboutData";
 import SectionTitle from "./SectionTitle";
+import "./ApiSection.css";
 
 function ApisSection() {
   return (
