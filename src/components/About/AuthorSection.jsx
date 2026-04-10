@@ -1,4 +1,5 @@
 import { AUTHOR } from "../../utils/aboutData";
+import "./AuthorSection.css";
 
 function AuthorSection() {
   return (
