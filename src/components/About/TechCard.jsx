@@ -1,4 +1,4 @@
-export function TechCard({ abbr, name, role, color }) {
+function TechCard({ abbr, name, role, color }) {
   return (
     <li className="about__tech-card">
       <div className={`about__tech-icon about__tech-icon--${color}`}>
@@ -11,3 +11,5 @@ export function TechCard({ abbr, name, role, color }) {
     </li>
   );
 }
+
+export default TechCard;
