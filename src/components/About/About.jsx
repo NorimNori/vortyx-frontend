@@ -1,3 +1,4 @@
+import AuthorSection from "./AuthorSection";
 import FeaturesSection from "./FeaturesSection";
 import HeroSection from "./HeroSection";
 
@@ -6,6 +7,7 @@ function About() {
     <div>
       <HeroSection />
       <FeaturesSection />
+      <AuthorSection />
     </div>
   );
 }
