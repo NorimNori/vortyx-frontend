@@ -1,3 +1,4 @@
+import ApisSection from "./ApiSection";
 import AuthorSection from "./AuthorSection";
 import FeaturesSection from "./FeaturesSection";
 import HeroSection from "./HeroSection";
@@ -8,6 +9,7 @@ function About() {
       <HeroSection />
       <FeaturesSection />
       <AuthorSection />
+      <ApisSection />
     </div>
   );
 }
