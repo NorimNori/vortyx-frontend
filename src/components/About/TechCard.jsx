@@ -1,3 +1,5 @@
+import "./TechCard.css";
+
 function TechCard({ abbr, name, role, color }) {
   return (
     <li className="about__tech-card">
