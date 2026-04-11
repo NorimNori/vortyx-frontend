@@ -1,17 +1,43 @@
-import { normalizeItem, TYPE_LABELS } from "../../utils/cardUtils";
+import { useNavigate } from "react-router-dom";
+import { CARD_TYPE, normalizeItem, TYPE_LABELS } from "../../utils/cardUtils";
 import "./Card.css";
 
 function Card({ item, type, onSave, isSaved }) {
   const data = normalizeItem(item, type);
   const typeLabel = TYPE_LABELS[type] || type;
+  const navigate = useNavigate();
 
   function handleSaveClick(e) {
     e.stopPropagation();
     onSave?.(item, type);
   }
 
+  function getDetailPath() {
+    if (type === CARD_TYPE.GAME) return `/games/${data.id}`;
+    if (type === CARD_TYPE.MOVIE) return `/movies/${data.id}`;
+    return `/movies/${data.id}`;
+  }
+
+  function handleCardClick() {
+    navigate(getDetailPath());
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleCardClick();
+    }
+  }
+
   return (
-    <article className="card">
+    <article
+      className="card"
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`Ver detalle de ${data.title}`}
+    >
       <div className="card__cover">
         {data.image ? (
           <img
