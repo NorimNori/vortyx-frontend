@@ -1,3 +1,5 @@
+import "./ItemPoster.css";
+
 function ItemPoster({ image, title }) {
   return (
     <aside className="item-detail__poster-wrap">
