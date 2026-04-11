@@ -1,0 +1,28 @@
+.item-detail__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 12px;
+}
+
+.item-detail__breadcrumb-link {
+  color: var(--color-text-subtle);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.item-detail__breadcrumb-link:hover {
+  color: var(--color-brand);
+}
+
+.item-detail__breadcrumb-sep {
+  color: var(--color-text-subtle);
+}
+
+.item-detail__breadcrumb-current {
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+}
