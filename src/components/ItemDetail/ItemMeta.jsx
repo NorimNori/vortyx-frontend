@@ -1,3 +1,5 @@
+import "./ItemMeta.css";
+
 function ItemMeta({ item, type }) {
   return (
     <ul className="item-detail__meta" aria-label="Información del título">
