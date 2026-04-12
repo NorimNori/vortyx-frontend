@@ -1,3 +1,5 @@
+import "./ItemExtraData.css";
+
 function ItemExtraData({ item }) {
   const hasData =
     item.developers || item.publishers || item.platforms?.length || item.status;
