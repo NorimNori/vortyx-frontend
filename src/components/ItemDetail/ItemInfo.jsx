@@ -2,6 +2,7 @@ import ItemBadges from "./ItemBadges";
 import ItemMeta from "./ItemMeta";
 import ItemExtraData from "./ItemExtraData";
 import ItemSaveSection from "./ItemSaveSection";
+import "./ItemInfo.css";
 
 function ItemInfo({ item, type }) {
   return (
