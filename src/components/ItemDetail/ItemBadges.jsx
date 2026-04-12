@@ -1,3 +1,5 @@
+import "./ItemBadges.css";
+
 function ItemBadges({ type, genres }) {
   const typeLabel =
     type === "game" ? "Juego" : type === "movie" ? "Película" : "Serie";
