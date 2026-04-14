@@ -1,3 +1,5 @@
+import "./Pagination.css";
+
 const SIBLINGS = 1;
 
 function buildPageRange(currentPage, totalPages) {
