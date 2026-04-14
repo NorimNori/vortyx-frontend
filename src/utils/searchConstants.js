@@ -1,10 +1,3 @@
-export const TABS = [
-  { id: "all", label: "Todos" },
-  { id: "game", label: "Videojuegos" },
-  { id: "movie", label: "Películas" },
-  { id: "series", label: "Series" },
-];
-
 export const INITIAL_SEARCH_STATE = {
   games: [],
   movies: [],

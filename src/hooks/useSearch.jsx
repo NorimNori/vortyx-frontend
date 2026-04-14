@@ -4,9 +4,12 @@ import { searchMoviesAndSeries } from "../utils/tmdbApi";
 import { INITIAL_SEARCH_STATE } from "../utils/searchConstants";
 
 export function useSearch() {
-  const [state, setState] = useState(INITIAL_SEARCH_STATE);
+  const [state, setState] = useState({
+    ...INITIAL_SEARCH_STATE,
+    activeFilter: "all",
+  });
 
-  async function handleSearch(query) {
+  async function handleSearch(query, filter = "all") {
     let isMounted = true;
 
     setState((prev) => ({
@@ -14,6 +17,7 @@ export function useSearch() {
       isLoading: true,
       error: false,
       hasSearched: true,
+      activeFilter: filter,
     }));
 
     try {

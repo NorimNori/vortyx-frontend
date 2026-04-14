@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { INITIAL_PAGES } from "../utils/searchConstants";
 
 export function usePages() {
-  const [pages, setPages] = useState(INITIAL_PAGES);
+  const [page, setPageState] = useState(1);
 
-  function setPage(tab, page) {
-    setPages((prev) => ({ ...prev, [tab]: page }));
+  function setPage(newPage) {
+    setPageState(newPage);
   }
 
-  function resetPages() {
-    setPages(INITIAL_PAGES);
+  function resetPage() {
+    setPageState(1);
   }
 
-  return { pages, setPage, resetPages };
+  return { page, setPage, resetPage };
 }
