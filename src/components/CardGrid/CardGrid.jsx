@@ -12,6 +12,8 @@ const SECTION_LABELS = {
 export const API_ERROR_MESSAGE =
   "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde.";
 
+const ARROW_THRESHOLD = 6;
+
 function CardGrid({ items, type, isLoading, error, onSave, savedItems = [] }) {
   const trackRef = useRef(null);
 
@@ -48,6 +50,8 @@ function CardGrid({ items, type, isLoading, error, onSave, savedItems = [] }) {
     );
   }
 
+  const showArrows = items.length > ARROW_THRESHOLD;
+
   return (
     <div className="card-grid">
       <div className="card-grid__header">
@@ -58,24 +62,26 @@ function CardGrid({ items, type, isLoading, error, onSave, savedItems = [] }) {
           </span>
         </h2>
 
-        <div className="card-grid__controls">
-          <button
-            className="card-grid__arrow"
-            onClick={() => scroll("prev")}
-            type="button"
-            aria-label="Anterior"
-          >
-            ‹
-          </button>
-          <button
-            className="card-grid__arrow"
-            onClick={() => scroll("next")}
-            type="button"
-            aria-label="Siguiente"
-          >
-            ›
-          </button>
-        </div>
+        {showArrows && (
+          <div className="card-grid__controls">
+            <button
+              className="card-grid__arrow"
+              onClick={() => scroll("prev")}
+              type="button"
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+            <button
+              className="card-grid__arrow"
+              onClick={() => scroll("next")}
+              type="button"
+              aria-label="Siguiente"
+            >
+              ›
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="card-grid__carousel">
