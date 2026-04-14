@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useItemDetail } from "../../hooks/useItemDetail";
 import Preloader from "../Preloader/Preloader";
-import ItemBreadcrumb from "./ItemBreadcrumb";
 import ItemPoster from "./ItemPoster";
 import ItemInfo from "./ItemInfo";
 import "./ItemDetail.css";
@@ -56,8 +55,6 @@ function ItemDetail({ type }) {
       {isGame && <div className="item-detail__orb" aria-hidden="true" />}
 
       <div className="item-detail__container">
-        <ItemBreadcrumb title={item.title} />
-
         <div className="item-detail__layout">
           <ItemPoster image={item.image} title={item.title} />
           <ItemInfo item={item} type={type} />
