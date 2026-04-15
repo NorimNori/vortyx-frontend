@@ -35,7 +35,7 @@
   background: conic-gradient(
     from 180deg,
     var(--color-brand),
-    var(--color-success),
+    var(--color-vortex),
     var(--color-brand)
   );
   opacity: 0.9;
@@ -54,7 +54,7 @@
   background: linear-gradient(
     90deg,
     var(--color-brand) 30%,
-    var(--color-success)
+    var(--color-vortex)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
