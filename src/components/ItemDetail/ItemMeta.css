@@ -1,0 +1,27 @@
+.item-detail__meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.item-detail__meta-item {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.item-detail__meta-item--rating {
+  font-weight: 500;
+}
+
+.item-detail__meta-item--rating.item-detail__meta-item--game {
+  color: var(--color-game);
+}
+
+.item-detail__meta-item--rating.item-detail__meta-item--movie {
+  color: var(--color-movie);
+}
+
+.item-detail__meta-item--rating.item-detail__meta-item--series {
+  color: var(--color-brand);
+}

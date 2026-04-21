@@ -1,0 +1,248 @@
+.card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  aspect-ratio: 2 / 3;
+  transition:
+    transform var(--transition-slow),
+    border-color var(--transition-slow);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card__cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .card__image {
+  transform: scale(1.04);
+}
+
+.card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(145deg, #120820, #070e1a);
+}
+
+.card__glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+}
+
+.card:hover .card__glow {
+  opacity: 1;
+}
+
+.card__glow--game {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 122, 0, 0.1),
+    transparent 60%
+  );
+}
+
+.card__glow--movie {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 45, 149, 0.1),
+    transparent 60%
+  );
+}
+
+.card__glow--series {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(34, 211, 238, 0.08),
+    transparent 60%
+  );
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.card:has(.card__glow--game):hover {
+  border-color: rgba(255, 122, 0, 0.3);
+}
+
+.card:has(.card__glow--movie):hover {
+  border-color: rgba(255, 45, 149, 0.3);
+}
+
+.card:has(.card__glow--series):hover {
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+.card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 7px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card__badge--game {
+  background: rgba(255, 122, 0, 0.15);
+  color: var(--color-game);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+}
+
+.card__badge--movie {
+  background: rgba(255, 45, 149, 0.15);
+  color: var(--color-movie);
+  border: 1px solid rgba(255, 45, 149, 0.25);
+}
+
+.card__badge--series {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--color-brand);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.card__save {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(6, 8, 15, 0.7);
+  backdrop-filter: blur(8px);
+  color: var(--color-text-muted);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity var(--transition-base),
+    background var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-fast);
+}
+
+.card:hover .card__save {
+  opacity: 1;
+}
+
+.card__save:hover {
+  background: rgba(34, 211, 238, 0.2);
+  color: var(--color-brand);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.card__save:active {
+  transform: scale(0.9);
+}
+
+.card__save--saved {
+  opacity: 1;
+  background: rgba(163, 255, 18, 0.15);
+  color: var(--color-success);
+  border-color: rgba(163, 255, 18, 0.3);
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(6, 8, 15, 0.98) 0%,
+    rgba(6, 8, 15, 0.6) 60%,
+    transparent 100%
+  );
+  padding: 32px 10px 10px;
+}
+
+.card__genre {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.card__genre--game {
+  color: var(--color-game);
+}
+
+.card__genre--movie {
+  color: var(--color-movie);
+}
+
+.card__genre--series {
+  color: var(--color-brand);
+}
+
+.card__title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__rating {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.card__rating--game {
+  color: var(--color-game);
+}
+
+.card__rating--movie {
+  color: var(--color-movie);
+}
+
+.card__rating--series {
+  color: var(--color-brand);
+}
+
+.card__year {
+  font-size: 9px;
+  color: var(--color-text-subtle);
+}

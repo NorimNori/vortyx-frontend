@@ -1,0 +1,22 @@
+.profile {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
+  overflow: hidden;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profile__tab-content {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .profile__container {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+}

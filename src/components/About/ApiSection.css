@@ -1,0 +1,74 @@
+.about__apis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  list-style: none;
+}
+
+.about__api-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  transition: border-color var(--transition-base);
+}
+
+.about__api-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.about__api-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.about__api-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.about__api-desc {
+  font-size: 11px;
+  color: var(--color-text-subtle);
+  font-weight: 300;
+}
+
+.about__api-badge {
+  font-size: 9px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity var(--transition-base);
+}
+
+.about__api-badge:hover {
+  opacity: 0.8;
+}
+
+.about__api-badge--game {
+  background: rgba(255, 122, 0, 0.12);
+  color: var(--color-game);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+}
+
+.about__api-badge--brand {
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--color-brand);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+@media (max-width: 768px) {
+  .about__apis-grid {
+    grid-template-columns: 1fr;
+  }
+}
