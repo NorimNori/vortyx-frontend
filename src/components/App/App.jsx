@@ -1,7 +1,8 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import { AuthContext } from "../../context/AuthContext";
+import { AuthProvider, useAuth } from "../../context/AuthContext";
+import { signin, signup } from "../../utils/mainApi";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -9,66 +10,66 @@ import Main from "../Main/Main";
 import SearchPage from "../SearchPage/SearchPage";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import Profile from "../Profile/Profile";
-//import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import About from "../About/About";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import NotFound from "../NotFound/NotFound";
 
 import "./App.css";
-import About from "../About/About";
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function AppContent() {
+  const { isLoggedIn, setIsLoggedIn, setCurrentUser, setToken, logout } =
+    useAuth();
 
   const [activeModal, setActiveModal] = useState(null);
 
   function handleLoginClick() {
     setActiveModal("login");
   }
-
   function handleRegisterClick() {
     setActiveModal("register");
   }
-
   function handleCloseModal() {
     setActiveModal(null);
   }
-
   function handleSwitchToRegister() {
     setActiveModal("register");
   }
-
   function handleSwitchToLogin() {
     setActiveModal("login");
   }
 
   async function handleLogin(credentials) {
-    try {
-      console.log("Login con:", credentials);
-      handleCloseModal();
-    } catch (err) {
-      return Promise.reject(err);
-    }
+    const data = await signin(credentials);
+
+    localStorage.setItem("vortyx_token", data.token);
+    setToken(data.token);
+    setIsLoggedIn(true);
+
+    const { getCurrentUser } = await import("../../utils/mainApi");
+    const user = await getCurrentUser(data.token);
+    setCurrentUser(user);
+
+    handleCloseModal();
   }
 
   async function handleRegister(userData) {
-    try {
-      console.log("Registro con:", userData);
-      handleCloseModal();
-    } catch (err) {
-      return Promise.reject(err);
-    }
+    await signup(userData);
+
+    await handleLogin({
+      email: userData.email,
+      password: userData.password,
+    });
   }
 
   return (
-    <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}
-    >
+    <>
       <Header
         isLoggedIn={isLoggedIn}
         onLoginClick={handleLoginClick}
         onRegisterClick={handleRegisterClick}
+        onLogout={logout}
       />
 
       <Routes>
@@ -77,8 +78,14 @@ function App() {
         <Route path="/games/:id" element={<ItemDetail type="game" />} />
         <Route path="/movies/:id" element={<ItemDetail type="movie" />} />
         <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
@@ -90,14 +97,21 @@ function App() {
         onLogin={handleLogin}
         onSwitchToRegister={handleSwitchToRegister}
       />
-
       <RegisterModal
         isOpen={activeModal === "register"}
         onClose={handleCloseModal}
         onRegister={handleRegister}
         onSwitchToLogin={handleSwitchToLogin}
       />
-    </AuthContext.Provider>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
