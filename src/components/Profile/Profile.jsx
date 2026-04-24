@@ -7,6 +7,8 @@ import StatsTab from "./StatsTab";
 import Preloader from "../Preloader/Preloader";
 import { ITEM_STATUS } from "../../utils/mockData";
 import "./Profile.css";
+import ProfileHeader from "./ProfileHeader";
+import ProfileTabs from "./ProfileTabs";
 
 const TABS = [
   { id: "games", label: "Juegos" },
@@ -90,30 +92,13 @@ function Profile() {
       <div className="profile__orb" aria-hidden="true" />
 
       <div className="profile__container">
-        <header className="profile__header">
-          <div className="profile__avatar">
-            {currentUser?.name?.charAt(0).toUpperCase() || "U"}
-          </div>
-          <div className="profile__info">
-            <h1 className="profile__name">
-              {currentUser?.name?.toUpperCase()}
-            </h1>
-            <p className="profile__meta">
-              Miembro desde{" "}
-              {currentUser?.createdAt ? formatDate(currentUser.createdAt) : "—"}
-            </p>
-            <div className="profile__quick-stats">
-              {quickStats.map(({ val, label, color }) => (
-                <div key={label} className="profile__quick-stat">
-                  <span className="profile__quick-stat-val" style={{ color }}>
-                    {val}
-                  </span>
-                  <span className="profile__quick-stat-label">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </header>
+        <ProfileHeader
+          user={currentUser}
+          games={games}
+          movies={movies}
+          series={series}
+        />
+        <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
         <form
           className="profile__search"
@@ -167,21 +152,6 @@ function Profile() {
             </button>
           </p>
         )}
-
-        <nav className="profile__tabs" aria-label="Secciones del perfil">
-          {TABS.map(({ id, label }) => (
-            <button
-              key={id}
-              className={`profile__tab${activeTab === id ? " profile__tab--active" : ""}`}
-              onClick={() => setActiveTab(id)}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === id}
-            >
-              {label}
-            </button>
-          ))}
-        </nav>
 
         <div className="profile__tab-content" role="tabpanel">
           {activeTab === "games" && (
