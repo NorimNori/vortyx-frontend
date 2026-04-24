@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { to: "/about", label: "Acerca de" },
 ];
 
-function Navigation() {
+function Navigation({ onNavClick }) {
   return (
     <nav className="navigation" aria-label="Navegación principal">
       <ul className="navigation__list">
@@ -20,6 +20,7 @@ function Navigation() {
               className={({ isActive }) =>
                 `navigation__link${isActive ? " navigation__link--active" : ""}`
               }
+              onClick={onNavClick}
             >
               {label}
             </NavLink>
