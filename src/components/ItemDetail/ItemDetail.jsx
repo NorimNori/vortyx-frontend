@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useItemDetail } from "../../hooks/useItemDetail";
-import Preloader from "../Preloader/Preloader";
 import ItemPoster from "./ItemPoster";
 import ItemInfo from "./ItemInfo";
+import Preloader from "../Preloader/Preloader";
 import "./ItemDetail.css";
 
 const ERROR_MESSAGE =
@@ -11,7 +11,20 @@ const ERROR_MESSAGE =
 function ItemDetail({ type }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { item, isLoading, error } = useItemDetail(id, type);
+
+  const {
+    item,
+    isLoading,
+    error,
+    selectedStatus,
+    setSelectedStatus,
+    isSaved,
+    isSaving,
+    saveError,
+    isLoggedIn,
+    isGame,
+    handleSave,
+  } = useItemDetail(id, type);
 
   if (isLoading) {
     return (
@@ -40,8 +53,6 @@ function ItemDetail({ type }) {
 
   if (!item) return null;
 
-  const isGame = type === "game";
-
   return (
     <div className="item-detail">
       {item.backdrop && (
@@ -51,13 +62,22 @@ function ItemDetail({ type }) {
           aria-hidden="true"
         />
       )}
-
       {isGame && <div className="item-detail__orb" aria-hidden="true" />}
 
       <div className="item-detail__container">
         <div className="item-detail__layout">
           <ItemPoster image={item.image} title={item.title} />
-          <ItemInfo item={item} type={type} />
+          <ItemInfo
+            item={item}
+            type={type}
+            selectedStatus={selectedStatus}
+            onStatusSelect={setSelectedStatus}
+            isSaved={isSaved}
+            isSaving={isSaving}
+            saveError={saveError}
+            isLoggedIn={isLoggedIn}
+            onSave={handleSave}
+          />
         </div>
       </div>
     </div>
