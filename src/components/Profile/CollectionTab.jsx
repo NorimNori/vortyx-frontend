@@ -4,9 +4,8 @@ import { countByStatus } from "../../utils/profileHelpers";
 import CollectionCard from "./CollectionCard";
 import "./CollectionTab.css";
 
-function CollectionTab({ items, type }) {
+function CollectionTab({ items, type, onStatusChange, onDelete }) {
   const [activeStatus, setActiveStatus] = useState("all");
-
   const counts = countByStatus(items);
   const filtered =
     activeStatus === "all"
@@ -15,11 +14,7 @@ function CollectionTab({ items, type }) {
 
   return (
     <div className="profile__collection">
-      <div
-        className="profile__status-filters"
-        role="group"
-        aria-label="Filtrar por estado"
-      >
+      <div className="profile__status-filters">
         <button
           className={`profile__status-btn${activeStatus === "all" ? " profile__status-btn--active" : ""}`}
           onClick={() => setActiveStatus("all")}
@@ -47,7 +42,12 @@ function CollectionTab({ items, type }) {
         <ul className="profile__grid">
           {filtered.map((item) => (
             <li key={item._id} className="profile__grid-item">
-              <CollectionCard item={item} type={type} />
+              <CollectionCard
+                item={item}
+                type={type}
+                onStatusChange={onStatusChange}
+                onDelete={onDelete}
+              />
             </li>
           ))}
         </ul>

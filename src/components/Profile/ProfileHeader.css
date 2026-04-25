@@ -91,4 +91,26 @@
     width: 100%;
     justify-content: center;
   }
+
+  .profile__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile__quick-stat {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile__quick-stats {
+    width: 90%;
+  }
+
+  .profile__info {
+    justify-content: center;
+    align-items: center;
+  }
 }

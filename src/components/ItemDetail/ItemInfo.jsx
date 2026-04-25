@@ -1,10 +1,19 @@
 import ItemBadges from "./ItemBadges";
 import ItemMeta from "./ItemMeta";
-import ItemExtraData from "./ItemExtraData";
 import ItemSaveSection from "./ItemSaveSection";
 import "./ItemInfo.css";
 
-function ItemInfo({ item, type }) {
+function ItemInfo({
+  item,
+  type,
+  selectedStatus,
+  onStatusSelect,
+  isSaved,
+  isSaving,
+  saveError,
+  isLoggedIn,
+  onSave,
+}) {
   return (
     <div className="item-detail__info">
       <ItemBadges type={type} genres={item.genres} />
@@ -19,9 +28,15 @@ function ItemInfo({ item, type }) {
         <p className="item-detail__description">{item.description}</p>
       )}
 
-      <ItemExtraData item={item} />
-
-      <ItemSaveSection />
+      <ItemSaveSection
+        selectedStatus={selectedStatus}
+        onStatusSelect={onStatusSelect}
+        onSave={onSave}
+        isSaved={isSaved}
+        isSaving={isSaving}
+        saveError={saveError}
+        isLoggedIn={isLoggedIn}
+      />
 
       {item.website && (
         <a

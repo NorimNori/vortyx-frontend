@@ -8,14 +8,24 @@ import {
   calcBacklogHours,
   countByStatus,
   getTopGenres,
+  buildHeatmap,
 } from "../../utils/profileHelpers";
 import "./StatsTab.css";
 
-function StatsTab({ games, movies, series, activity }) {
+function StatsTab({ games, movies, series }) {
   const allItems = [...games, ...movies, ...series];
   const backlogHours = calcBacklogHours(games);
-  const gameCounts = countByStatus(games);
-  const topGenres = getTopGenres(games);
+  const activity = buildHeatmap(games, [...movies, ...series]);
+
+  const topGenres = Object.entries(
+    games.reduce((acc, g) => {
+      if (g.genre) acc[g.genre] = (acc[g.genre] || 0) + 1;
+      return acc;
+    }, {}),
+  )
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([genre]) => genre);
 
   const summary = [
     { val: games.length, label: "Juegos", color: "var(--color-game)" },
@@ -26,12 +36,6 @@ function StatsTab({ games, movies, series, activity }) {
       label: "Completados",
       color: "var(--color-success)",
     },
-  ];
-
-  const genreColors = [
-    { border: "rgba(34,211,238,0.4)", color: "var(--color-brand)" },
-    { border: "rgba(124,58,237,0.3)", color: "var(--color-vortex)" },
-    { border: "rgba(255,122,0,0.25)", color: "var(--color-game)" },
   ];
 
   return (
@@ -50,11 +54,7 @@ function StatsTab({ games, movies, series, activity }) {
       <div className="stats__grid">
         <section className="stats__panel" aria-label="Mapa de actividad">
           <h3 className="stats__panel-title">Actividad — últimos 70 días</h3>
-          <div
-            className="stats__heatmap"
-            role="img"
-            aria-label="Heatmap de actividad"
-          >
+          <div className="stats__heatmap">
             {activity.map((level, i) => (
               <div
                 key={i}
@@ -64,14 +64,11 @@ function StatsTab({ games, movies, series, activity }) {
                   boxShadow:
                     level === 5 ? "0 0 5px rgba(163,255,18,0.5)" : "none",
                 }}
-                title={`Día ${i + 1}: nivel ${level}`}
+                title={`Nivel ${level}`}
               />
             ))}
           </div>
-          <div
-            className="stats__heatmap-legend"
-            aria-label="Leyenda del heatmap"
-          >
+          <div className="stats__heatmap-legend">
             <span className="stats__heatmap-legend-label">Menos</span>
             {HEATMAP_COLORS.map((color, i) => (
               <div
@@ -117,7 +114,7 @@ function StatsTab({ games, movies, series, activity }) {
                   className="stats__status-val"
                   style={{ color: STATUS_COLORS[status] }}
                 >
-                  {gameCounts[status] || 0}
+                  {countByStatus(games)[status] || 0}
                 </span>
               </li>
             ))}
@@ -127,19 +124,35 @@ function StatsTab({ games, movies, series, activity }) {
         <section className="stats__panel" aria-label="Géneros favoritos">
           <h3 className="stats__panel-title">Géneros top</h3>
           <div className="stats__genres">
-            {topGenres.map((genre, i) => (
-              <span
-                key={genre}
-                className="stats__genre-tag"
-                style={{
-                  borderColor: genreColors[i]?.border,
-                  color: genreColors[i]?.color,
-                }}
-              >
-                {i === 0 && "★ "}
-                {genre}
-              </span>
-            ))}
+            {topGenres.length > 0 ? (
+              topGenres.map((genre, i) => (
+                <span
+                  key={genre}
+                  className="stats__genre-tag"
+                  style={{
+                    borderColor:
+                      i === 0
+                        ? "rgba(34,211,238,0.4)"
+                        : i === 1
+                          ? "rgba(124,58,237,0.3)"
+                          : "rgba(255,122,0,0.25)",
+                    color:
+                      i === 0
+                        ? "var(--color-brand)"
+                        : i === 1
+                          ? "var(--color-vortex)"
+                          : "var(--color-game)",
+                  }}
+                >
+                  {i === 0 && "★ "}
+                  {genre}
+                </span>
+              ))
+            ) : (
+              <p className="profile__empty">
+                Agrega juegos para ver tus géneros top.
+              </p>
+            )}
           </div>
         </section>
       </div>

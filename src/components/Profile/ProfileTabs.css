@@ -32,12 +32,29 @@
 }
 
 @media (max-width: 768px) {
-  .profile__tabs {
-    overflow-x: auto;
-  }
-
   .profile__tab {
     padding: var(--spacing-sm) var(--spacing-md);
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile__tabs {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1rem;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+  }
+
+  .profile__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile__tab {
+    flex: 0 0 auto;
   }
 }
