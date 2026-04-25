@@ -171,7 +171,7 @@ npm run lint     # Linter ESLint
 Este frontend se conecta al backend de Vortyx para autenticación y almacenamiento de la colección personal.
 
 🔗 **API:** [api.windy.gammavortex.com](https://api.windy.gammavortex.com)
-📁 **Repositorio:** [github.com/tu-usuario/vortyx-backend](https://github.com/tu-usuario/vortyx-backend)
+📁 **Repositorio:** [https://github.com/NorimNori/vortyx-backend](https://github.com/NorimNori/vortyx-backend)
 
 ---
 
