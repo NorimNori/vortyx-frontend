@@ -151,7 +151,7 @@ La app estará disponible en `http://localhost:5173`
 |---|---|---|
 | `VITE_RAWG_API_KEY` | API Key de RAWG | [rawg.io/apidocs](https://rawg.io/apidocs) |
 | `VITE_TMDB_TOKEN` | Read Access Token de TMDB | [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api) |
-| `VITE_API_BASE_URL` | URL del backend | `http://localhost:3001` en dev · `https://api.windy.gammavortex.com` en prod |
+| `VITE_API_BASE_URL` | URL del backend | `http://localhost:3000` en dev · `https://api.windy.gammavortex.com` en prod |
 
 ---
 
